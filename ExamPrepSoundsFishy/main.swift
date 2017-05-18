@@ -1,5 +1,7 @@
-import Foundation
 
+import Foundation
+var fishHeights = [0, 0, 0, 0]
+var output : String = ""
 /*
  
  ORGANIZING YOUR SOLUTION
@@ -19,30 +21,19 @@ import Foundation
  Make use of your test plan and algorithm to ensure your code is complete.
  
  */
-var inputToProcess : String = ""
-
-// Loop until valid input is received
-while inputToProcess == "" {
-    
-    // Show the prompt
-    print("Ask the question here? ", terminator: "")
-    
-    // Get the user's input
-    var input : String?
-    input = readLine()
-    
-    // Use optional binding to see if the string can be unwrapped (to see if it is not nil)
-    if let notNilInput = input {
-        
-        // You probably need to add additional checks to be sure the
-        // input received is valid
-        // Add checks as needed...
-        
-        // Save the input given, as we are certain it's what we are looking for now
-        inputToProcess = notNilInput
-        
+for i in 0...3 {
+    while fishHeights[i] == 0 {
+        print("Reading \(i+1)? ", terminator: "")
+        var input : String?
+        input = readLine()
+        if let notNilInput = input {
+            if let inputAsInt = Int(notNilInput) {
+                if inputAsInt > 0 {
+                    fishHeights[i] = inputAsInt
+                }
+            }
+        }
     }
-    
 }
 
 /*
@@ -56,9 +47,15 @@ while inputToProcess == "" {
  */
 
 // Add 'process' code below....
-print("replace with process logic")
-
-
+if fishHeights[0] > fishHeights[1] && fishHeights[1] > fishHeights[2] && fishHeights[2] > fishHeights[3] {
+    output = "Fish Diving"
+} else if fishHeights[3] > fishHeights[2] && fishHeights[2] > fishHeights[1] && fishHeights[1] > fishHeights[0] {
+    output = "Fish Rising"
+} else if  fishHeights[0] == fishHeights[1] && fishHeights[1] == fishHeights[2] && fishHeights[2] == fishHeights[3] {
+    output = "Fish at Constant Depth"
+} else {
+    output = "No Fish"
+}
 /*
  
  OUTPUT
@@ -70,4 +67,4 @@ print("replace with process logic")
  */
 
 // Add 'output' code below... replace what is here as needed.
-print("The input given was: \(inputToProcess)")
+print(output)
